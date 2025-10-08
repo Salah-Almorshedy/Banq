@@ -1,0 +1,808 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>نسخة تجريبية - كشف حساب</title>
+
+    <!-- Cairo font (Google Fonts) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --teal: #063d3b;
+            --accent: #00a99d;
+            --card: #f6f3fb;
+            --text: #263238;
+            --danger: #e74c3c;
+            --success: #10b981;
+            --muted: #000;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(180deg, #eef2f6 0%, #ffffff 100%);
+            color: var(--text)
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh
+        }
+
+        .sidebar {
+            width: 320px;
+            background: #00343a;
+            color: #fff;
+            padding: 28px 18px;
+            position: sticky;
+            top: 0;
+            height: 900px
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px
+        }
+
+        .logo {
+            width: 46px;
+            height: 46px;
+            background: #fff;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--teal);
+            font-weight: 800
+        }
+
+        .brand h1 {
+            font-size: 18px;
+            margin: 0
+        }
+
+        .menu {
+            margin-top: 18px
+        }
+
+        .menu i {
+            padding-right: 0;
+            padding-left: 8px;
+        }
+
+        ul li::marker {
+            font-size: 24px;
+        }
+
+        .menu li {
+            padding-right: 40px;
+        }
+
+        .menu-item {
+            padding: 12px 14px;
+            border-radius: 8px;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            color: #ddeae9;
+            margin-bottom: 6px
+        }
+
+        .menu-item.active {
+            margin-top: 15px;
+            margin-bottom: 0;
+            color: #fff;
+        }
+
+        .menu-item small {
+            opacity: 0.8
+        }
+
+        .main {
+            flex: 1;
+            padding: 28px
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px
+        }
+
+        .search {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .search input {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid #e3e6ee;
+            background: #fff;
+            min-width: 300px
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 6px 18px rgba(32, 39, 55, 0.04);
+        }
+
+        .card h2 {
+            margin: 0 0 8px 0;
+            font-size: 16px
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 14px
+        }
+
+        .btn {
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.02);
+        }
+
+        .btn.icon {
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center
+        }
+
+        .table-wrap {
+            margin-top: 6px;
+            overflow: auto
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px
+        }
+
+        th,
+        td {
+            padding: 14px 12px;
+            text-align: right;
+            font-size: 14px;
+            border-bottom: 1px solid #ececf3
+        }
+
+        thead th {
+            background: transparent;
+            color: #6b7280;
+            text-align: right;
+            font-weight: 600
+        }
+
+        tbody tr:hover {
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.02), transparent)
+        }
+
+        .amount {
+            font-weight: 700
+        }
+
+        .credit {
+            color: var(--success)
+        }
+
+        .debit {
+            color: var(--danger)
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        .row-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .dots {
+            width: 20px;
+            height: 20px;
+            border-radius: 6p;
+            display: inline-block
+        }
+
+        .pagination {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-top: 12px
+        }
+
+        .page-btn {
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid #e6e8ef;
+            background: #fff;
+            cursor: pointer
+        }
+
+        @media (max-width:900px) {
+            .sidebar {
+                display: none
+            }
+
+            .search input {
+                min-width: 120px
+            }
+        }
+
+        .small {
+            font-size: 13px;
+            color: #6b7280
+        }
+
+        .details {
+            background: #fff
+        }
+
+        /* small visual tweaks to match the screenshot */
+        .note-box {
+            background: #fff;
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #ecebf4;
+            margin: 12px 0;
+            color: #6b7280
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #filterBtn {
+            border: 1px solid #ddd;
+            background-color: #f8f9ff;
+            border-radius: 10px;
+            padding: 10px 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #filterBtn:hover {
+            background-color: #e8e9f9;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 5px 10px;
+            width: 250px;
+        }
+
+        .search-box i {
+            color: #06a77d;
+            font-size: 18px;
+            margin-left: 8px;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 15px;
+            background: none;
+            color: #333;
+        }
+
+        .cover {
+            color: white;
+            font-weight: bold;
+            padding: 10px 35px;
+            margin-right: -28px;
+            margin-left: -28px;
+            background-size: cover;
+        }
+       .menu-header {
+    background-color: #87bec7; /* خلفية زرقاء فاتحة بدل الأحمر لو حابب */
+    color: white; /* نص أبيض */
+    padding: 8px 15px;
+    margin-right: -17px;
+    /* border-radius: 6px; */
+    display: inline-block; /* تظهر ككتلة واحدة */
+    list-style: disc; /* تظهر النقاط للـ li */
+    width: calc(100% + 36px);
+}
+
+.menu-header i,
+.menu-header span,
+.menu-header li {
+    color: white; /* نص أبيض */
+    vertical-align: middle;
+}
+
+.menu-header ul {
+    display: inline-block; /* علشان النقاط تبقى جنب النص */
+    margin: 0;
+    padding-left: 20px; /* مسافة للنقطة */
+}
+
+.menu-header li {
+    display: list-item; /* ظهور النقطة */
+    margin-left: 5px; /* مسافة بين النص والنقطة */
+}
+td.muted {
+    word-break: break-word; /* يكسر الكلمات الطويلة */
+    white-space: normal;    /* يسمح بالالتفاف على عدة أسطر */
+    max-width: 300px;       /* تحدد عرض العمود حسب رغبتك */
+}
+td.muted {
+    direction: rtl;        /* خلي الكتابة من اليمين لليسار */
+    unicode-bidi: bidi-override; /* يحافظ على ترتيب الأرقام العربية والإنجليزية كما هي */
+}
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar" aria-label="الشريط الجانبي">
+            <div class="brand">
+                <div style="text-align: center; margin: auto;">
+                    <img src="asets/imgs/7777.jpg" alt="" width="300px">
+                </div>
+            </div>
+          <nav class="menu">
+    <div class="menu-header">
+        <i style="margin-right: -10px;" class="fa-solid fa-angle-right"></i> 
+        <i style="margin:0 10px;" class="fa-solid fa-wallet"></i> 
+        <span>الحسابات</span>
+        <ul>
+            <li class="menu-item active">الاستعلام عن الحسابات</li>
+        </ul>
+    </div>
+    <ul>
+        <li class="menu-item">صافي القيمة</li>
+        <li class="menu-item">إصدار كشف حساب</li>
+        <li class="menu-item">كشف الحساب الإلكتروني</li>
+        <li class="menu-item">فاتورة ضريبة القيمة المضافة</li>
+        <li class="menu-item">تقرير التسهيلات الائتمانية</li>
+        <li class="menu-item">الاستعلام عن طلب خدمة</li>
+        <li class="menu-item">الوثائق الالكترونية</li>
+    </ul>
+</nav>
+
+        </aside>
+
+
+
+
+        <main class="main">
+            <div style="height: 10px;" class="topbar" role="banner">
+                <div class="search" role="search">
+                    <i style="color: black; margin-left: -40px; z-index: 2;" class="fa-solid fa-magnifying-glass"></i>
+                    <input
+                        style="border: 1px solid gray; outline: none; padding-right: 35px;background-color: #ddd; border-radius: 10px;"
+                        id="search" placeholder="بحث" aria-label="بحث في العمليات" />
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <button style="margin-left: 25px;" class="btn" title="إشعارات"><i
+                            style="font-size: 22px; color: #5d83f9;" class="fa-regular fa-bell"></i></button>
+                    <button style="margin-left: 25px;" class="btn" title="English">English</button>
+                    <i style="font-size: 22px; text-align: center; padding-top: 10px;border-radius: 50%; color: #ddd; background-color: gray; width: 45px; height: 45px; margin-left: 10px;"
+                        class="fa-solid fa-user"></i>
+                    <div style="font-size: 14px;" class="text">
+                        <h4 style="margin:0">62160251</h4>
+                        <div class="small">آخر دخول 29-09-2025 PM 4:35</div>
+                    </div>
+                    <img src="asets/imgs/images.png" alt="" width="22px" style="margin-right: 10px;">
+                </div>
+
+            </div>
+            <div class="cover" style="display: flex; align-items: center; justify-content: space-between;">
+                <img style="margin-right: -40px;" src="asets/imgs/2222.jpg" alt="" width='107.8%' height="80px">
+            </div>
+
+
+
+
+            <section style="border: 1px solid gray;background-color: #ddd;" class="card"
+                aria-labelledby="recent-heading">
+                <h2 id="recent-heading"
+                    style="border-bottom: 5px solid #00af9a; width: 300px;text-align: center;padding-bottom: 20px;">
+                    العمليات الأخيرة</h2>
+                <div class="note-box" style="text-align: center;margin-top: 20px;margin-bottom: 20px; font-size: 13px;">
+                    ** عزيزي العميل، يمكنك الاطلاع على آخر 1000 عملية. لعرض المزيد من عمليات الحساب يرجى تحميل كشف
+                    الحساب. **
+                </div>
+
+
+                <div class="toolbar" style="margin-top:6px; display: flex; justify-content: space-between;">
+
+                    <div class="search-container">
+                        <div class="search-box" style="border: 1px solid gray; border-radius: 7px;">
+                            <input style="padding: 5px 10px;" type="text" id="searchInput" placeholder="بحث">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <button
+                            style="font-size:20px;color: #40338f; margin: 5px; padding: 5px 10px; background-color: transparent;"
+                            id="filterBtn"><img src="asets/imgs/666666666.jpg" alt="" width="65px"
+                                style="margin-right: -20px ;"></button>
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="btn" style="display: flex;">
+                        <div class="download">
+                            <button
+                                style="font-size:20px;color: #40338f; margin: 5px; padding: 5px 10px; background-color: transparent; border: 1px solid gray;"
+                                class="btn icon" id="download" title="تحميل CSV"><i
+                                    class="fa-solid fa-download"></i></button>
+                        </div>
+                        <div class="reload">
+                            <button
+                                style="font-size:20px;color: #40338f; margin: 5px; padding: 5px 10px; background-color: transparent; border: 1px solid gray;"
+                                class="btn icon" id="refresh" title="تحديث البيانات"><i
+                                    class="fa-solid fa-arrows-rotate"></i></button>
+                        </div>
+                    </div>
+                    <!-- <div style="flex:1"></div> -->
+
+                </div>
+
+                <div class="table-wrap" role="region" aria-label="قائمة العمليات">
+                    <table id="tx-table" style="border: 1px solid #a9a9a9;">
+                        <thead style="border: 1px solid red; background-color: #f4f3f8; text-align: center;">
+                            <tr style="text-align: center; border: 1px solid gray;">
+                                <!-- <th></th> -->
+                                <th style="text-align: center; padding-right: 47px;" scope="col">تاريخ التنفيذ <img src="asets/imgs/dots.jpg" alt="" width="50px" height="" style="margin-right: -19px;margin-bottom: -22px;"></th>
+                                <th scope="col">التفاصيل <img src="asets/imgs/dots.jpg" alt="" width="50px" height="" style="margin-right: -19px;margin-bottom: -22px;"></th>
+                                <th scope="col">مبلغ الإيداع/الخصم <img src="asets/imgs/dots.jpg" alt="" width="50px" height="" style="margin-right: -19px;margin-bottom: -22px;"></th>
+                                <th scope="col">الرصيد الجاري <img src="asets/imgs/dots.jpg" alt="" width="50px" height="" style="margin-right: -19px;margin-bottom: -22px;"></th>
+                                <th scope="col">نوع العملية <img src="asets/imgs/dots.jpg" alt="" width="50px" height="" style="margin-right: -19px;margin-bottom: -22px;"></th>
+                                <th scope="col">الإجراء</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                            <!-- rows inserted by JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="display:flex;align-items:center;margin-top:35px; justify-content: flex-end;">
+                    <div class="box" style="display: flex; align-items: center; margin-top: 10px; margin-left: 20px;">
+                        <div class="small" style="margin-left: 10px;">العناصر في كل صفحة</div>
+                        <div class="select">
+                            <select id="perPage" class="btn" style="color:black;padding:7px 25px; text-align: center;">
+                                <option value="5" style="color: black;">5</option>
+                                <option value="10" style="color: black;">10</option>
+                                <option value="20" style="color: black;">20</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="pagination" id="pagination" role="navigation" aria-label="ترقيم الصفحات"></div>
+
+                </div>
+            </section>
+
+            <div style="display: flex; justify-content: end;" class="button">
+                <button
+                    style="font-size: 20px; padding: 7px 20px; background-color: transparent; color: #00af9a; border: 1px solid #00af9a; border-radius: 7px; font-weight: bold; margin-top: 30px;">رجوع</button>
+            </div>
+        </main>
+    </div>
+    <!-- <i class="fa-solid fa-ellipsis-vertical"></i> -->
+
+    <script>
+
+        // بيانات تجريبية مشابهة للصورة (mock data)
+        const transactions = [
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'حوالة صادرة', balance: 186474.61, amount: 317500.00, amountClass: 'debit', details: 'حوالة صادرة', date: '27-09-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'رسوم بنكية/عمولات', balance: 503974.61, amount: 28.75, amountClass: 'debit', details: 'رسوم بنكية/عمولات', date: '03-09-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'حوالة صادرة', balance: 504003.36, amount: 90000, amountClass: 'debit', details: 'حوالة صادرة', date: '01-09-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'حوالة صادرة', balance: 594003.36, amount: 10000, amountClass: 'debit', details: 'حوالة صادرة', date: '01-09-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type:  'رسوم بنكية/عمولات', balance: 604003.36, amount: 28.75, amountClass: 'debit', details: 'رسوم بنكية/عمولات', date: '31-08-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'رسوم بنكية/عمولات', balance: 604032.11, amount: 11.5, amountClass: 'debit', details: 'رسوم بنكية/عمولات', date: '31-08-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'حوالة صادرة', balance: 604043.61, amount: 700000, amountClass: 'debit', details: 'حوالة صادرة', date: '31-08-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'اصدار شيك مصرفي', balance: 1304043.61, amount: 400000, amountClass: 'debit', details: 'اصدار شيك مصرفي', date: '31-08-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'رسوم بنكية/عمولات', balance: 1704034.61, amount: 28.75, amountClass: 'debit', details: 'رسوم بنكية/عمولات', date: '28-08-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'شيك مقاصة', balance: 1704072.36, amount: 1400000.00, amountClass: 'credit', details: 'شيك مقاصة', date: '28-08-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'تسوية نقاط البيع', balance: 304072.36, amount: 0.01, amountClass: 'credit', details: 'تسوية نقاط البيع', date: '22-08-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'تسوية نقاط البيع', balance: 304072.35, amount: 0.01, amountClass: 'credit', details: 'تسوية نقاط البيع', date: '22-08-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'تسوية نقاط البيع', balance: 304072.34, amount: 379.15, amountClass: 'credit', details: 'تسوية نقاط البيع', date: '21-08-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'تسوية نقاط البيع', balance: 303693.19, amount: 1079.87, amountClass: 'credit', details: 'تسوية نقاط البيع', date: '20-08-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'تسوية نقاط البيع', balance: 302613.32, amount: 368.07, amountClass: 'credit', details: 'تسوية نقاط البيع', date: '20-08-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'رسوم بنكية/عمولات', balance: 302245.25, amount: 207, amountClass: 'debit', details: 'رسوم بنكية/عمولات', date: '27-07-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'رسوم بنكية/عمولات', balance: 302452.25, amount: 17.25, amountClass: 'debit', details: 'رسوم بنكية/عمولات', date: '10-07-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'حوالة مالية واردة سريعة', balance: 302469.50, amount: 500, amountClass: 'credit', details: 'حوالة مالية واردة سريعة', date: '10-07-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'حوالة مالية واردة سريعة', balance: 301969.50, amount: 488, amountClass: 'credit', details: 'حوالة مالية واردة سريعة', date: '10-07-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'اصدار شيك مصرفي', balance: 301481.50, amount: 98800, amountClass: 'debit', details: 'اصدار شيك مصرفي', date: '26-06-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'رسوم بنكية/عمولات', balance: 400281.50, amount: 11.5, amountClass: 'debit', details: 'رسوم بنكية/عمولات', date: '02-06-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'حوالة صادرة', balance: 400293.00, amount: 100000, amountClass: 'debit', details: 'حوالة صادرة', date: '02-06-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'اصدار شيك مصرفي', balance: 500293.00, amount: 300000, amountClass: 'debit', details: 'اصدار شيك مصرفي', date: '02-06-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'حوالة واردة', balance: 800293.00, amount: 800000, amountClass: 'credit', details: 'حوالة واردة', date: '02-06-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'رسوم بنكية/عمولات', balance: 293.00, amount: 207, amountClass: 'debit', details: 'رسوم بنكية/عمولات', date: '26-05-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'حوالة مالية واردة سريعة', balance: 500, amount: 500, amountClass: 'credit', details: 'حوالة مالية واردة سريعة', date: '25-05-2025' },
+        ];
+
+        // state
+        let state = { q: '', page: 1, perPage: 5, rows: transactions };
+
+        const tbody = document.getElementById('tbody');
+        const pagination = document.getElementById('pagination');
+        const perPageSelect = document.getElementById('perPage');
+        const searchInput = document.getElementById('search');
+
+        function formatNumber(num) {
+            return Number(num).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+
+
+        function render() {
+            const q = state.q.trim().toLowerCase();
+            let filtered = state.rows.filter(r => {
+                if (!q) return true;
+                return (r.type + ' ' + r.details + ' ' + r.date).toLowerCase().includes(q);
+            });
+
+            const total = filtered.length;
+            const totalPages = Math.max(1, Math.ceil(total / state.perPage));
+            if (state.page > totalPages) state.page = totalPages;
+            const start = (state.page - 1) * state.perPage;
+            const pageRows = filtered.slice(start, start + state.perPage);
+
+            tbody.innerHTML = pageRows.map(r => `
+      <tr>
+        <t
+        <td style="width:60px"> <div class="row-actions" aria-hidden="true"><div class="dots"></div></div></td>
+        <td> <button class="btn" onclick="toggleDetails(this)" aria-expanded="false" aria-controls="details"
+            style="color: #00af9a; background-color: transparent; font-size: 18px; cursor: pointer;">
+            <i class="fa-solid fa-angle-down"></i>
+            </button>
+            ${escapeHtml(r.date)}</td>
+          <td class="muted">${escapeHtml(r.details)}</td>
+
+          <td class="amount ${r.amountClass == 'credit' ? 'credit' : 'debit'}">${formatNumber(r.amount)}</td>
+          <td>${formatNumber(r.balance)}</td>
+          <td>${escapeHtml(r.type)}</td>
+          <td>${r.action}</td>
+        </tr>
+      `).join('');
+
+
+
+
+            // pagination UI
+            pagination.innerHTML = '';
+
+            const info = document.createElement('div');
+            info.className = 'small';
+
+            // احسب إجمالي النتائج والصفحات
+            const totall = transactions.length;
+            const totalpages = Math.ceil(totall / state.perPage);
+
+            // اكتب النص
+            info.textContent = `الصفحة ${state.page} من ${totalpages}`;
+            pagination.appendChild(info);
+
+            // ... باقي كود الزرار next
+
+
+
+            const prev = document.createElement('button'); prev.className = 'page-btn'; prev.textContent = '‹';
+            prev.disabled = state.page === 1; prev.onclick = () => { state.page--; render(); };
+            pagination.appendChild(prev);
+            prev.style.color = '#00af9a';
+            prev.style.backgroundColor = 'transparent';
+            prev.style.fontSize = '30px'; // 👈 كبر الخط
+            prev.style.padding = '8px 14px'; // 👈 زود مساحة الزرار
+            prev.style.borderRadius = '6px';
+            prev.style.cursor = 'pointer';
+            prev.style.border = 'none'
+
+            pagination.appendChild(prev);
+
+
+
+
+            const next = document.createElement('button'); next.className = 'page-btn'; next.textContent = '›';
+            next.disabled = state.page >= totalPages; next.onclick = () => { state.page++; render(); };
+            pagination.appendChild(next);
+            next.style.color = '#00af9a';
+            next.style.backgroundColor = 'transparent';
+            next.style.fontSize = '30px';
+            next.style.padding = '8px 14px';
+            next.style.borderRadius = '6px';
+            next.style.cursor = 'pointer';
+            next.style.border = 'none'
+
+
+            // prev.style.border = '1px solid green'; // لو حابب تضيف إطار خفيف بنفس اللون
+
+            pagination.appendChild(next);
+        };
+
+        // helpers
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str).replace(/[&<>"']/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]; });
+        }
+
+        // search / per page events
+        perPageSelect.addEventListener('change', e => { state.perPage = parseInt(e.target.value, 10); state.page = 1; render(); });
+        searchInput.addEventListener('input', e => { state.q = e.target.value; state.page = 1; render(); });
+        // download existing file from your laptop/server
+        document.getElementById('download').addEventListener('click', () => {
+            const fileUrl = 'asets/files/report.xlsx.xlsx'; // ضع هنا مسار الملف على جهازك/المشروع
+            const a = document.createElement('a');
+            a.href = fileUrl;
+            a.download = 'report.xlsx'; // اسم الملف عند التحميل
+            document.body.appendChild(a); // مؤقتاً لإطلاق التحميل
+            a.click();
+            document.body.removeChild(a);
+        });
+
+
+        // refresh (simulated)
+        document.getElementById('refresh').addEventListener('click', () => {
+            // في بيئة حقيقية هنا تستدعي API لتحديث البيانات
+            location.reload()
+            render();
+        });
+
+
+
+
+
+    function toggleDetails(btn) {
+    const tr = btn.closest('tr');
+    const allRows = Array.from(document.querySelectorAll('#tbody tr'));
+    const rowIndex = allRows.indexOf(tr);
+    const transaction = state.rows[rowIndex + (state.page - 1) * state.perPage];
+
+    // لو التفاصيل مفتوحة بالفعل نقفلها
+    if (tr.nextElementSibling && tr.nextElementSibling.classList.contains('details')) {
+        tr.nextElementSibling.remove();
+        btn.setAttribute('aria-expanded', 'false');
+        return;
+    }
+
+    // إزالة أي تفاصيل مفتوحة أخرى
+    const open = document.querySelector('.details');
+    if (open) open.remove();
+
+    // بيانات مختلفة لكل صف
+    const extraDetails = [
+        { ref: 'REF  82355090202434784 رقم', note: 'رقم 2560209549940 , شروق فرحان مثقال الرويلي ,SAR,ID# 1046283352, مصروفات /  أخرى , مصروفات ,REF 82355090202434784,AL-NUZHAH BRANCH-Riyadh,DATE-TIME27/09-11:29:18,EXCHANGE RATE 1.0, الرياض -  النزهة ,VALUE DT 27/09/25,CURRENCY SAR', check: ''},
+        { ref: 'REF 2356924609518816  رقم', note: 'Outgoing Transfer,FEE 25.00 SAR,VAT AMOUNT 3.75 SAR,VAT% 15%,REF 2356924609518816  رقم , عمولة حوالة صادرة ,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 03/09-14:15:46,EXCHANGE RATE 1.0, حوالة صادرة , عمولة 25.00 ريال , الضريبة المضافة 3.75 ريال , نسبة ضريبةالقيمةالمضافة 15% , الرياض -  النزهة ,VALUE DT 27/09/25,CURRENCY SAR', check: '' },
+        { ref: 'REF 8235509010226597', note: 'رقم 2560209549940 , شروق فرحان مثقال الرويلي ,SAR,ID# 1046283352, شخصي /  أخرى , مصاريف ,REF 8235509010226597,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 01/09-14:43:26,EXCHANGE RATE 1.0, الرياض -  النزهة ,VALUE DT 01/09/25,CURRENCY SAR', check: '' },
+        { ref: 'REF 8235509010226469', note: 'رقم 2560209549940 , شروق فرحان مثقال الرويلي ,SAR,ID# 1046283352, مشتريات /  أخرى , تعزيز ,REF 8235509010226469,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 01/09-14:40:28,EXCHANGE RATE 1.0, الرياض -  النزهة ,VALUE DT 01/09/25,CURRENCY SAR', check: '' },
+        { ref: 'REF 2356924309518804  رقم', note: 'Outgoing Transfer,FEE 25.00 SAR,VAT AMOUNT 3.75 SAR,VAT% 15%,REF 2356924309518804  رقم , عمولة حوالة صادرة ,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 31/08-10:52:58,EXCHANGE RATE 1.0, حوالة صادرة , عمولة 25.00 ريال , الضريبة المضافة 3.75 ريال , نسبة ضريبةالقيمةالمضافة 15% , الرياض -  النزهة ,VALUE DT 31/08/25,CURRENCY SAR', check: '' },
+        
+        { ref: 'REF 2356924309518804  رقم', note: 'Issue Riyadbank Dft,FEE 10.00 SAR,VAT AMOUNT 1.50 SAR,VAT% 15%,NO. 301506454  رقم , ك مصرفي مبلغ العمولة ,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 31/08-10:49:27,EXCHANGE RATE 1.0, اصدار شيك مصرفي , عمولة 10.00 ريال , الضريبة المضافة 1.50 ريال , نسبة ضريبةالقيمةالمضافة 15% , الرياض -  النزهة ,VALUE DT 31/08/25,CURRENCY SAR', check: '' },
+        { ref: '--', note: 'CHECK NO. 301506454  رقم , بندر سعيد دبيس القحطاني ,05,CHECK CREDIT DATE 31/08/2025 R,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 31/08-10:49:27,EXCHANGE RATE 1.0, شيك ,1, أغراض أخرى ,EF 508310198063, الرياض -  النزهة ,VALUE DT 31/08/25,CURRENCY SAR', check: '' },
+        { ref: 'REF 2356924009518801  رقم', note: 'Outgoing Transfer,FEE 25.00 SAR,VAT AMOUNT 3.75 SAR,VAT% 15%,REF 2356924009518801  رقم , عمولة حوالة صادرة ,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 28/08-14:25:07,EXCHANGE RATE 1.0, حوالة صادرة , عمولة 25.00 ريال , الضريبة المضافة 3.75 ريال , نسبة ضريبةالقيمةالمضافة 15% , الرياض -  النزهة ,VALUE DT 28/08/25,CURRENCY SAR', check: '' },
+        { ref: '--', note: 'SENT DATE: 2025-06-02,FROM MOHAMMED HUSSAIN M ALABBA,REF VITII57865592094,ايداع شيك مقاصة البنك السعودي الفرنسي ,BSFREPHR98125153083YBSFRPYC251,ORG.AMOUNT: 800000.00,REMT INF: MOHAMMED HUSSAIN M A,4067 13217, سداد مديونية على شركة يشف ,SAUDI ARABIA,4067 13217 7,DATE-TIME28/08-36:21:13,VALUE DATE: 2025-08-28,SI  من شيك مقاصة,BANQUE SAUDI FRANSI  عن طريق ,1496Y6SARMOHAMMED HUSSAIN M AL,SAR EXCHANGE RATE 1.0000,LABBASI XX, قيمة , ين ,SA5655000000036162900382,481 Dist.', check: '' },
+        { ref: '--', note: 'SPAN CARD (0001),000179255205 25/08/22 21:00:0,AMT 0.01 SAR,VAT AMOUNT 0.00 SAR,VAT% 15%,11768277,3, مبلغ 0.01 ريال , الضريبة المضافة 0.00 ريال , نسبة ضريبةالقيمةالمضافة 15%', check: '' },
+        
+        { ref: '--', note: 'SPAN CARD (0001),000179255205 25/08/22 21:00:0,AMT 0.01 SAR,VAT AMOUNT 0.00 SAR,VAT% 15%,11768277,3, مبلغ 0.01 ريال , الضريبة المضافة 0.00 ريال , نسبة ضريبةالقيمةالمضافة 15%', check: '' },
+        { ref: '--', note: 'SPAN CARD (0001),000179255204 25/08/22 21:00:0,AMT 0.01 SAR,VAT AMOUNT 0.00 SAR,VAT% 15%,11768276,3, مبلغ 0.01 ريال , الضريبة المضافة 0.00 ريال , نسبة ضريبةالقيمةالمضافة 15%', check: '' },
+        { ref: '--', note: 'SPAN CARD (0003),000179145725 25/08/21 21:00:0,AMT 379.15 SAR,VAT AMOUNT 0.37 SAR,VAT% 15%,FEE 2.48 SAR,11768277,3, مبلغ 379.15 ريال , الضريبة المضافة 0.37 ريال , نسبة ضريبةالقيمةالمضافة 15% , عموله 2.48 ريال', check: '' },
+        { ref: '--', note: 'SPAN CARD (0003),000179029605 25/08/20 21:00:0,AMT 1,079.87 SAR,VAT AMOUNT 1.06 SAR,VAT% 15%,FEE 7.07 SAR,11768277,4, مبلغ 1,079.87 ريال , الضريبة المضافة 1.06 ريال , نسبة ضريبةالقيمةالمضافة 15% , عموله 7.07 ريال', check: '' },
+        { ref: '--', note: 'VISA CARD (0002),000179029613 25/08/20 21:00:0,AMT 368.07 SAR,VAT AMOUNT 1.28 SAR,VAT% 15%,FEE 8.50 SAR,11768277,4, مبلغ 368.07 ريال , الضريبة المضافة 1.28 ريال , نسبة ضريبةالقيمةالمضافة 15% , عموله 8.50 ريال', check: '' },
+        
+        { ref: 'REF 220  رقم', note: 'CORP LENDING MGT. FE,FEE 0000000000180.00 SAR,VAT AMOUNT 00027.00 SAR,VAT% 15%,REF 220  رقم ,SME CENTER RIYADH, AL-NAFAL,DATE-TIME 27/07-13:07:04,EXCHANGE RATE 1.0, عمولات اقراض -  ادارية , عمولة 0000000000180.00 ريال , الضريبة المضافة 00027.00 ريال , نسبة ضريبةالقيمةالمضافة 15% , مركز المنشأت الصغيرة والمتوسطة ,VALUE DT 27/07/25,CURRENCY SAR', check: '' },
+        { ref: 'REF 220  رقم', note: 'CORP LENDING MGT. FE,FEE 0000000000015.00 SAR,VAT AMOUNT 00002.25 SAR,VAT% 15%,REF 220  رقم ,SME CENTER RIYADH, AL-NAFAL,DATE-TIME 10/07-14:02:30,EXCHANGE RATE 1.0, عمولات اقراض -  ادارية , عمولة 0000000000015.00 ريال , الضريبة المضافة 00002.25 ريال , نسبة ضريبةالقيمةالمضافة 15% , مركز المنشأت الصغيرة والمتوسطة ,VALUE DT 10/07/25,CURRENCY SAR', check: '' },
+        { ref: 'REF 20250710SARJHIRJHI6BOPF111', note: 'REF RJHI000423982522,REF 20250710SARJHIRJHI6BOPF111,Impact Management Medical comp,RJHISARI,SA1180000589608016202268,10-07-2025 11:32:52 AM,VIA CORE SYSTEM,DATE-TIME 10/07-11:32:52,32403364,any, عن طريق النظام الآ لي ,VALUE DT 10/07/25', check: '' },
+        { ref: 'REF 20250710SARJHIRJHI6BOPF111', note: 'REF RJHI000423980654,REF 20250710SARJHIRJHI6BOPF111,Impact Management Medical comp,RJHISARI,SA1180000589608016202268,10-07-2025 11:26:46 AM,VIA CORE SYSTEM,DATE-TIME 10/07-11:26:46,26378761,any, عن طريق النظام الآ لي ,VALUE DT 10/07/25', check: '' },
+        { ref: '--', note: 'CHECK NO. 301506417  رقم , نايف بن بندر بن مساعد ال سعود ,05,CHECK CREDIT DATE 26/06/2025 R,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 26/06-14:06:34,EXCHANGE RATE 1.0, شيك , الامير ,1, أغراض أخرى ,EF 506269439350, الرياض -  النزهة ,VALUE DT 26/06/25,CURRENCY SAR', check: '' },
+        
+
+        { ref: '--', note: 'Issue Riyadbank Dft,FEE 10.00 SAR,VAT AMOUNT 1.50 SAR,VAT% 15%,NO. 301506406  رقم , ك مصرفي مبلغ العمولة ,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 02/06-16:42:24,EXCHANGE RATE 1.0, اصدار شيك مصرفي , عمولة 10.00 ريال , الضريبة المضافة 1.50 ريال , نسبة ضريبةالقيمةالمضافة 15% , الرياض -  النزهة ,VALUE DT 02/06/25,CURRENCY SAR', check: '' },
+        { ref: 'REF 8235506029219619', note: 'رقم 2560209549940 , شروق فرحان مثقال الرويلي ,SAR,ID# 1046283352, شخصي /  أخرى , بيع ,REF 8235506029219619,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 02/06-16:46:26,EXCHANGE RATE 1.0, الرياض -  النزهة ,VALUE DT 02/06/25,CURRENCY SAR', check: '' },
+        { ref: '--', note: 'CHECK NO. 301506406  رقم , نايف بن بندر بن مساعد ال سعود ,05,CHECK CREDIT DATE 02/06/2025 R,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 02/06-16:42:24,EXCHANGE RATE 1.0, شيك , الامير ,1, أغراض أخرى ,EF 506029219554, الرياض -  النزهة ,VALUE DT 02/06/25,CURRENCY SAR', check: '' },
+        { ref: 'REF VITII57865592094', note: 'SENT DATE: 2025-06-02,FROM MOHAMMED HUSSAIN M ALABBA,REF VITII57865592094,THROUGH BANQUE SAUDI FRANSI,BSFREPHR98125153083YBSFRPYC251,ORG.AMOUNT: 800000.00,REMT INF: MOHAMMED HUSSAIN M A,4067 13217, ايجار ومخارجة خروج شريك من يشف ,SAUDI ARABIA,4067 13217 7,DATE-TIME 02/06-22:26:04,VALUE DATE: 2025-06-02,SI  من ,BSFRPYC2515300Y6,BANQUE SAUDI FRANSI  عن طريق ,5300Y6SARMOHAMMED HUSSAIN M AL,SAR EXCHANGE RATE 1.0000,LABBASI XX, قيمة , ين ,SA5655000000036162900382,481 al dawud Al Hamra Dist.,VALUE DT 02/06/25', check: '' },
+        { ref: 'REF 220  رقم', note: 'CORP LENDING MGT. FE,FEE 0000000000180.00 SAR,VAT AMOUNT 00027.00 SAR,VAT% 15%,REF 220  رقم ,SME CENTER RIYADH, AL-NAFAL,DATE-TIME 26/05-12:09:17,EXCHANGE RATE 1.0, عمولات اقراض -  ادارية , عمولة 0000000000180.00 ريال , الضريبة المضافة 00027.00 ريال , نسبة ضريبةالقيمةالمضافة 15% , مركز المنشأت الصغيرة والمتوسطة ,VALUE DT 26/05/25,CURRENCY SAR', check: '' },
+        { ref: 'REF 20250525SABSFRBSFR6B981116', note: 'REF BSFR000406268933,REF 20250525SABSFRBSFR6B981116,SHURUQ FARHAN MITHQAL ALRUWAIL,BSFRSARI,SA82550000000P6851500170,25-05-2025 04:49:15 PM,VIA CORE SYSTEM,DATE-TIME 25/05-16:49:15,48342721,I, عن طريق النظام الآ لي ,VALUE DT 25/05/25', check: '' },
+    ];
+
+    const details = extraDetails[rowIndex % extraDetails.length];
+
+    const detailsRow = document.createElement('tr');
+    detailsRow.className = 'details';
+    detailsRow.innerHTML = `
+      <td colspan="6" style="background:#ddd; padding:18px;">
+        <div style="
+          display: flex;
+          justify-content: space-between;
+          gap: 15px;
+          
+          font-size: 14px;
+        ">
+          <div style="
+            flex: 1;
+            background: ;
+            border-radius: 8px;
+            padding: 10px;
+          ">
+            <div style="color:#40338f; font-weight:bold;">الرقم المرجعي</div>
+            <div style="margin-top:; color:#222;">${details.ref}</div>
+            <div style="margin-right:0px;margin-top:200px;color:#40338f;font-weight:bold;">تاريخ العملية</div>
+            <div style="margin-top:5px; color:#222;">${transaction.date}</div>
+          </div>
+
+          <div style="
+            flex: 1;
+            background: #ddd;
+            border-radius: 8px;
+            padding: 10px;
+          ">
+            <div style="color:#40338f
+; font-weight:bold; width:30px; margin-right:-60px">الملاحظات</div>
+            <div style="margin-top:5px;margin-right:-60px">${details.note}</div>
+          </div>
+
+          <div style="
+            flex: 1;
+            background: #ddd;
+            border-radius: 8px;
+            padding: 10px;
+          ">
+            <div style="color:#40338f
+; font-weight:bold;margin-right:10px">رقم الشيك</div>
+            <div style="margin-top:5px; color:#222; margin-right:10px">${details.check}</div>
+          </div>
+        </div>
+      </td>
+    `;
+
+    tr.insertAdjacentElement('afterend', detailsRow);
+    btn.setAttribute('aria-expanded', 'true');
+}
+
+
+        // expose toggleDetails to global scope (used by inline onclick)
+        window.toggleDetails = toggleDetails;
+
+        // initial render
+        render();
+
+
+
+        // Note: this is a front-end mock. For production you must fetch real data via secure API calls and implement server-side auth & validation.
+    </script>
+</body>
+</html>
