@@ -186,17 +186,51 @@
 
         th,
         td {
-            padding: 14px 12px;
+            padding: 10px 8px; /* tightened spacing */
             text-align: right;
             font-size: 14px;
             border-bottom: 1px solid #ececf3
+        }
+
+        /* Nudge tbody cell content slightly to the right for better spacing */
+        tbody td {
+            margin-right: -180px; /* increase right padding */
+        }
+
+        /* Keep the action/dots cell compact */
+        tbody td:first-child {
+            padding-right: 8px;
+            width: 60px;
+        }
+
+        /* Keep these columns on one line; allow table to scroll horizontally if content is long */
+        tbody td:nth-child(2), /* date */
+        tbody td:nth-child(4), /* amount */
+        tbody td:nth-child(5), /* balance */
+        tbody td:nth-child(6)  /* type */ {
+            white-space: nowrap;
+        }
+
+        /* Nudge the date column (header + cells) slightly to the right */
+        thead th:nth-child(2) {
+            padding-right: 80px; /* increase header right padding */
+            text-align: center;
+        }
+        tbody td:nth-child(2) {
+            padding-left: 170px; /* increase cell right padding for date column */
+        }
+
+        /* Allow horizontal scrolling of the table when columns overflow */
+        .table-wrap {
+            overflow-x: auto;
         }
 
         thead th {
             background: transparent;
             color: #6b7280;
             text-align: right;
-            font-weight: 600
+            font-weight: 600;
+            white-space: nowrap; /* keep header text and icon on one line */
         }
 
         tbody tr:hover {
@@ -204,7 +238,8 @@
         }
 
         .amount {
-            font-weight: 700
+            font-weight: 700;
+            padding-left: 170px;
         }
 
         .credit {
@@ -503,28 +538,37 @@
                 </div>
 
                 <div class="table-wrap" role="region" aria-label="قائمة العمليات">
-                    <table id="tx-table" style="border: 1px solid #a9a9a9;">
-                        <thead style="border: 1px solid red; background-color: #f4f3f8; text-align: center;">
-                            <tr style="text-align: center; border: 1px solid gray;">
-                                <!-- <th></th> -->
-                                <th style="text-align: center; padding-right: 47px;" scope="col">تاريخ التنفيذ <img
-                                        src="asets/imgs/dots.jpg" alt="" width="50px" height=""
-                                        style="margin-right: -19px;margin-bottom: -22px;"></th>
-                                <th scope="col">التفاصيل <img src="asets/imgs/dots.jpg" alt="" width="50px" height=""
-                                        style="margin-right: -19px;margin-bottom: -22px;"></th>
-                                <th scope="col">مبلغ الإيداع/الخصم <img src="asets/imgs/dots.jpg" alt="" width="50px"
-                                        height="" style="margin-right: -19px;margin-bottom: -22px;"></th>
-                                <th scope="col">الرصيد الجاري <img src="asets/imgs/dots.jpg" alt="" width="50px"
-                                        height="" style="margin-right: -19px;margin-bottom: -22px;"></th>
-                                <th scope="col">نوع العملية <img src="asets/imgs/dots.jpg" alt="" width="50px" height=""
-                                        style="margin-right: -19px;margin-bottom: -22px;"></th>
-                                <th scope="col">الإجراء</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody">
-                            <!-- rows inserted by JS -->
-                        </tbody>
-                    </table>
+            <table id="tx-table" style="border: 1px solid #a9a9a9; table-layout: fixed; width: 100%;">
+            <colgroup>
+                <col style="width:60px"> <!-- action/dots -->
+                <col style="width:140px"> <!-- date -->
+                <col> <!-- details (flexible) -->
+                <col style="width:140px"> <!-- amount -->
+                <col style="width:140px"> <!-- balance -->
+                <col style="width:140px"> <!-- type -->
+                <col style="width:80px"> <!-- action icon -->
+            </colgroup>
+            <thead style="height: 79px; border: 1px solid red; background-color: #f4f3f8; text-align: center;">
+                <tr style="text-align: center; border: 1px solid gray;">
+                <th scope="col"></th>
+                <th style="text-align: center; padding-right: 0;" scope="col">تاريخ التنفيذ <img style="margin-right: -20px;margin-bottom: -28px;"
+                 src="asets/imgs/dots.jpg" alt="" width="60" height="60"
+                    style="margin-right: -8px; margin-bottom: -6px; vertical-align: middle;"></th>
+                <th style="padding-right: 20px;" scope="col">التفاصيل <img style="margin-right: -20px;margin-bottom: -28px;"  src="asets/imgs/dots.jpg" alt="" width="60" height="60"
+                    style="margin-right: -8px; margin-bottom: -6px; vertical-align: middle;"></th>
+                <th style="padding-left: 180px;" scope="col">مبلغ الإيداع/الخصم <img style="margin-right: -20px;margin-bottom: -28px" src="asets/imgs/dots.jpg" alt="" width="60"
+                    height="60" style="margin-right: -8px; margin-bottom: -6px; vertical-align: middle;"></th>
+                <th scope="col">الرصيد الجاري <img style="margin-right: -20px;margin-bottom: -28px;" src="asets/imgs/dots.jpg" alt="" width="60"
+                    height="60" style="margin-right: -8px; margin-bottom: -6px; vertical-align: middle;"></th>
+                <th scope="col">نوع العملية <img style="margin-right: -20px;margin-bottom: -24px;" src="asets/imgs/dots.jpg" alt="" width="60" height="50"
+                    style="margin-right: -8px; margin-bottom: -6px; vertical-align: middle;"></th>
+                <th scope="col">الإجراء</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <!-- rows inserted by JS -->
+            </tbody>
+            </table>
                 </div>
 
                 <div style="display:flex;align-items:center;margin-top:35px; justify-content: flex-end;">
@@ -610,23 +654,29 @@
             const start = (state.page - 1) * state.perPage;
             const pageRows = filtered.slice(start, start + state.perPage);
 
-            tbody.innerHTML = pageRows.map(r => `
-      <tr>
-        <t
-        <td style="width:60px"> <div class="row-actions" aria-hidden="true"><div class="dots"></div></div></td>
-        <td> <button class="btn" onclick="toggleDetails(this)" aria-expanded="false" aria-controls="details"
-            style="color: #00af9a; background-color: transparent; font-size: 18px; cursor: pointer;">
-            <i class="fa-solid fa-angle-down"></i>
-            </button>
-            ${escapeHtml(r.date)}</td>
-          <td class="muted">${escapeHtml(r.details)}</td>
+            // Build a map from filtered index -> original index in state.rows so we can attach a stable data-index
+            const filteredIndices = filtered.map(r => state.rows.indexOf(r));
 
-          <td class="amount ${r.amountClass == 'credit' ? 'credit' : 'debit'}">${formatNumber(r.amount)}</td>
-          <td>${formatNumber(r.balance)}</td>
-          <td>${escapeHtml(r.type)}</td>
-          <td>${r.action}</td>
-        </tr>
-      `).join('');
+            // Render rows and attach a stable data-index that points to the original state.rows index
+            tbody.innerHTML = pageRows.map((r, i) => {
+                const originalIndex = filteredIndices[start + i];
+                return `
+      <tr data-index="${originalIndex}">
+                <td style="width:60px"> <div class="row-actions" aria-hidden="true"><div class="dots"></div></div></td>
+                <td> <button class="btn" onclick="toggleDetails(this)" aria-expanded="false" aria-controls="details"
+                        style="color: #00af9a; background-color: transparent; font-size: 18px; cursor: pointer;">
+                        <i class="fa-solid fa-angle-down"></i>
+                        </button>
+                        ${escapeHtml(r.date)}</td>
+                    <td class="muted">${escapeHtml(r.details)}</td>
+
+                    <td class="amount ${r.amountClass == 'credit' ? 'credit' : 'debit'}">${formatNumber(r.amount)}</td>
+                    <td>${formatNumber(r.balance)}</td>
+                    <td>${escapeHtml(r.type)}</td>
+                    <td>${r.action}</td>
+                </tr>
+            `;
+            }).join('');
 
 
 
@@ -716,9 +766,20 @@
 
         function toggleDetails(btn) {
             const tr = btn.closest('tr');
-            const allRows = Array.from(document.querySelectorAll('#tbody tr'));
-            const rowIndex = allRows.indexOf(tr);
-            const transaction = state.rows[rowIndex + (state.page - 1) * state.perPage];
+
+            // If we have a stable data-index (original index from state.rows) use it.
+            const idxAttr = tr.getAttribute('data-index');
+            let transactionIndex = null;
+            if (idxAttr !== null) {
+                transactionIndex = parseInt(idxAttr, 10);
+            } else {
+                // fallback: compute row position among data rows (ignore any injected .details rows)
+                const dataRows = Array.from(document.querySelectorAll('#tbody tr:not(.details)'));
+                const pos = dataRows.indexOf(tr);
+                // compute page start index to approximate original index when possible
+                transactionIndex = (state.page - 1) * state.perPage + pos;
+            }
+            const transaction = state.rows[transactionIndex] || {};
 
             // لو التفاصيل مفتوحة بالفعل نقفلها
             if (tr.nextElementSibling && tr.nextElementSibling.classList.contains('details')) {
@@ -769,7 +830,8 @@
                 { ref: 'REF 20250525SABSFRBSFR6B981116', note: 'REF BSFR000406268933,REF 20250525SABSFRBSFR6B981116,SHURUQ FARHAN MITHQAL ALRUWAIL,BSFRSARI,SA82550000000P6851500170,25-05-2025 04:49:15 PM,VIA CORE SYSTEM,DATE-TIME 25/05-16:49:15,48342721,I, عن طريق النظام الآ لي ,VALUE DT 25/05/25', check: '' },
             ];
 
-            const details = extraDetails[rowIndex % extraDetails.length];
+            // choose details by the original transaction index so each row gets its own mapping
+            const details = extraDetails[transactionIndex % extraDetails.length] || { ref: '--', note: '', check: '' };
 
             const detailsRow = document.createElement('tr');
             detailsRow.className = 'details';
