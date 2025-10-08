@@ -329,45 +329,60 @@
             margin-left: -28px;
             background-size: cover;
         }
-       .menu-header {
-    background-color: #87bec7; /* خلفية زرقاء فاتحة بدل الأحمر لو حابب */
-    color: white; /* نص أبيض */
-    padding: 8px 15px;
-    margin-right: -17px;
-    /* border-radius: 6px; */
-    display: inline-block; /* تظهر ككتلة واحدة */
-    list-style: disc; /* تظهر النقاط للـ li */
-    width: calc(100% + 35px);
-}
 
-.menu-header i,
-.menu-header span,
-.menu-header li {
-    color: white; /* نص أبيض */
-    vertical-align: middle;
-}
+        .menu-header {
+            background-color: #87bec7;
+            /* خلفية زرقاء فاتحة بدل الأحمر لو حابب */
+            color: white;
+            /* نص أبيض */
+            padding: 8px 15px;
+            margin-right: -17px;
+            /* border-radius: 6px; */
+            display: inline-block;
+            /* تظهر ككتلة واحدة */
+            list-style: disc;
+            /* تظهر النقاط للـ li */
+            width: calc(100% + 35px);
+        }
 
-.menu-header ul {
-    display: inline-block; /* علشان النقاط تبقى جنب النص */
-    margin: 0;
-    padding-left: 20px; /* مسافة للنقطة */
-}
+        .menu-header i,
+        .menu-header span,
+        .menu-header li {
+            color: white;
+            /* نص أبيض */
+            vertical-align: middle;
+        }
 
-.menu-header li {
-    display: list-item; /* ظهور النقطة */
-    margin-left: 5px; /* مسافة بين النص والنقطة */
-}
-td.muted {
-    word-break: break-word; /* يكسر الكلمات الطويلة */
-    white-space: normal;    /* يسمح بالالتفاف على عدة أسطر */
-    max-width: 300px;       /* تحدد عرض العمود حسب رغبتك */
-}
-td.muted {
-    direction: rtl;        /* خلي الكتابة من اليمين لليسار */
-    unicode-bidi: bidi-override; /* يحافظ على ترتيب الأرقام العربية والإنجليزية كما هي */
-}
+        .menu-header ul {
+            display: inline-block;
+            /* علشان النقاط تبقى جنب النص */
+            margin: 0;
+            padding-left: 20px;
+            /* مسافة للنقطة */
+        }
 
+        .menu-header li {
+            display: list-item;
+            /* ظهور النقطة */
+            margin-left: 5px;
+            /* مسافة بين النص والنقطة */
+        }
 
+        td.muted {
+            word-break: break-word;
+            /* يكسر الكلمات الطويلة */
+            white-space: normal;
+            /* يسمح بالالتفاف على عدة أسطر */
+            max-width: 300px;
+            /* تحدد عرض العمود حسب رغبتك */
+        }
+
+        td.muted {
+            direction: rtl;
+            /* خلي الكتابة من اليمين لليسار */
+            unicode-bidi: bidi-override;
+            /* يحافظ على ترتيب الأرقام العربية والإنجليزية كما هي */
+        }
     </style>
 </head>
 
@@ -379,29 +394,29 @@ td.muted {
                     <img src="asets/imgs/7777.jpg" alt="" width="300px" style="background-color: transparent;">
                 </div>
             </div>
-          <nav class="menu">
-    <div class="menu-header">
-        <i style="margin-right: -10px;" class="fa-solid fa-angle-right"></i> 
-        <i style="margin:0 10px;" class="fa-solid fa-wallet"></i> 
-        <span>الحسابات</span>
-        <ul>
-            <li class="menu-item active">الاستعلام عن الحسابات</li>
-        </ul>
-    </div>
-    <ul>
-        <li class="menu-item">صافي القيمة</li>
-        <li class="menu-item">إصدار كشف حساب</li>
-        <li class="menu-item">كشف الحساب الإلكتروني</li>
-        <li class="menu-item">فاتورة ضريبة القيمة المضافة</li>
-        <li class="menu-item">تقرير التسهيلات الائتمانية</li>
-        <li class="menu-item">الاستعلام عن طلب خدمة</li>
-        <li class="menu-item">الوثائق الالكترونية</li>
-    </ul>
-   <ul>
-    الشيكات
-    <li>وثائق فتح الحساب</li>
-   </ul>
-</nav>
+            <nav class="menu">
+                <div class="menu-header">
+                    <i style="margin-right: -10px;" class="fa-solid fa-angle-right"></i>
+                    <i style="margin:0 10px;" class="fa-solid fa-wallet"></i>
+                    <span>الحسابات</span>
+                    <ul>
+                        <li class="menu-item active">الاستعلام عن الحسابات</li>
+                    </ul>
+                </div>
+                <ul>
+                    <li class="menu-item">صافي القيمة</li>
+                    <li class="menu-item">إصدار كشف حساب</li>
+                    <li class="menu-item">كشف الحساب الإلكتروني</li>
+                    <li class="menu-item">فاتورة ضريبة القيمة المضافة</li>
+                    <li class="menu-item">تقرير التسهيلات الائتمانية</li>
+                    <li class="menu-item">الاستعلام عن طلب خدمة</li>
+                    <li class="menu-item">الوثائق الالكترونية</li>
+                </ul>
+                <ul>
+                    الشيكات
+                    <li>وثائق فتح الحساب</li>
+                </ul>
+            </nav>
 
         </aside>
 
@@ -431,7 +446,8 @@ td.muted {
 
             </div>
             <div class="cover" style="display: flex; align-items: center; justify-content: space-between;">
-                <img style="margin-right: -40px;" src="asets/imgs/مساء الخير يا.jpg" alt="" width='107.8%' height="80px">
+                <img style="margin-right: -40px;" src="asets/imgs/مساء الخير يا.jpg" alt="" width='107.8%'
+                    height="80px">
             </div>
 
 
@@ -491,11 +507,17 @@ td.muted {
                         <thead style="border: 1px solid red; background-color: #f4f3f8; text-align: center;">
                             <tr style="text-align: center; border: 1px solid gray;">
                                 <!-- <th></th> -->
-                                <th style="text-align: center; padding-right: 47px;" scope="col">تاريخ التنفيذ <img src="asets/imgs/dots.jpg" alt="" width="50px" height="" style="margin-right: -19px;margin-bottom: -22px;"></th>
-                                <th scope="col">التفاصيل <img src="asets/imgs/dots.jpg" alt="" width="50px" height="" style="margin-right: -19px;margin-bottom: -22px;"></th>
-                                <th scope="col">مبلغ الإيداع/الخصم <img src="asets/imgs/dots.jpg" alt="" width="50px" height="" style="margin-right: -19px;margin-bottom: -22px;"></th>
-                                <th scope="col">الرصيد الجاري <img src="asets/imgs/dots.jpg" alt="" width="50px" height="" style="margin-right: -19px;margin-bottom: -22px;"></th>
-                                <th scope="col">نوع العملية <img src="asets/imgs/dots.jpg" alt="" width="50px" height="" style="margin-right: -19px;margin-bottom: -22px;"></th>
+                                <th style="text-align: center; padding-right: 47px;" scope="col">تاريخ التنفيذ <img
+                                        src="asets/imgs/dots.jpg" alt="" width="50px" height=""
+                                        style="margin-right: -19px;margin-bottom: -22px;"></th>
+                                <th scope="col">التفاصيل <img src="asets/imgs/dots.jpg" alt="" width="50px" height=""
+                                        style="margin-right: -19px;margin-bottom: -22px;"></th>
+                                <th scope="col">مبلغ الإيداع/الخصم <img src="asets/imgs/dots.jpg" alt="" width="50px"
+                                        height="" style="margin-right: -19px;margin-bottom: -22px;"></th>
+                                <th scope="col">الرصيد الجاري <img src="asets/imgs/dots.jpg" alt="" width="50px"
+                                        height="" style="margin-right: -19px;margin-bottom: -22px;"></th>
+                                <th scope="col">نوع العملية <img src="asets/imgs/dots.jpg" alt="" width="50px" height=""
+                                        style="margin-right: -19px;margin-bottom: -22px;"></th>
                                 <th scope="col">الإجراء</th>
                             </tr>
                         </thead>
@@ -537,7 +559,7 @@ td.muted {
             { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'رسوم بنكية/عمولات', balance: 503974.61, amount: 28.75, amountClass: 'debit', details: 'رسوم بنكية/عمولات', date: '03-09-2025' },
             { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'حوالة صادرة', balance: 504003.36, amount: 90000, amountClass: 'debit', details: 'حوالة صادرة', date: '01-09-2025' },
             { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'حوالة صادرة', balance: 594003.36, amount: 10000, amountClass: 'debit', details: 'حوالة صادرة', date: '01-09-2025' },
-            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type:  'رسوم بنكية/عمولات', balance: 604003.36, amount: 28.75, amountClass: 'debit', details: 'رسوم بنكية/عمولات', date: '31-08-2025' },
+            { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'رسوم بنكية/عمولات', balance: 604003.36, amount: 28.75, amountClass: 'debit', details: 'رسوم بنكية/عمولات', date: '31-08-2025' },
             { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'رسوم بنكية/عمولات', balance: 604032.11, amount: 11.5, amountClass: 'debit', details: 'رسوم بنكية/عمولات', date: '31-08-2025' },
             { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'حوالة صادرة', balance: 604043.61, amount: 700000, amountClass: 'debit', details: 'حوالة صادرة', date: '31-08-2025' },
             { action: '<i class="fa-solid fa-ellipsis-vertical" style="color:#00af9a;"></i>', type: 'اصدار شيك مصرفي', balance: 1304043.61, amount: 400000, amountClass: 'debit', details: 'اصدار شيك مصرفي', date: '31-08-2025' },
@@ -692,66 +714,66 @@ td.muted {
 
 
 
-    function toggleDetails(btn) {
-    const tr = btn.closest('tr');
-    const allRows = Array.from(document.querySelectorAll('#tbody tr'));
-    const rowIndex = allRows.indexOf(tr);
-    const transaction = state.rows[rowIndex + (state.page - 1) * state.perPage];
+        function toggleDetails(btn) {
+            const tr = btn.closest('tr');
+            const allRows = Array.from(document.querySelectorAll('#tbody tr'));
+            const rowIndex = allRows.indexOf(tr);
+            const transaction = state.rows[rowIndex + (state.page - 1) * state.perPage];
 
-    // لو التفاصيل مفتوحة بالفعل نقفلها
-    if (tr.nextElementSibling && tr.nextElementSibling.classList.contains('details')) {
-        tr.nextElementSibling.remove();
-        btn.setAttribute('aria-expanded', 'false');
-        return;
-    }
+            // لو التفاصيل مفتوحة بالفعل نقفلها
+            if (tr.nextElementSibling && tr.nextElementSibling.classList.contains('details')) {
+                tr.nextElementSibling.remove();
+                btn.setAttribute('aria-expanded', 'false');
+                return;
+            }
 
-    // إزالة أي تفاصيل مفتوحة أخرى
-    const open = document.querySelector('.details');
-    if (open) open.remove();
+            // إزالة أي تفاصيل مفتوحة أخرى
+            const open = document.querySelector('.details');
+            if (open) open.remove();
 
-    // بيانات مختلفة لكل صف
-    const extraDetails = [
-        { ref: 'REF  82355090202434784 رقم', note: 'رقم 2560209549940 , شروق فرحان مثقال الرويلي ,SAR,ID# 1046283352, مصروفات /  أخرى , مصروفات ,REF 82355090202434784,AL-NUZHAH BRANCH-Riyadh,DATE-TIME27/09-11:29:18,EXCHANGE RATE 1.0, الرياض -  النزهة ,VALUE DT 27/09/25,CURRENCY SAR', check: ''},
-        { ref: 'REF 2356924609518816  رقم', note: 'Outgoing Transfer,FEE 25.00 SAR,VAT AMOUNT 3.75 SAR,VAT% 15%,REF 2356924609518816  رقم , عمولة حوالة صادرة ,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 03/09-14:15:46,EXCHANGE RATE 1.0, حوالة صادرة , عمولة 25.00 ريال , الضريبة المضافة 3.75 ريال , نسبة ضريبةالقيمةالمضافة 15% , الرياض -  النزهة ,VALUE DT 27/09/25,CURRENCY SAR', check: '' },
-        { ref: 'REF 8235509010226597', note: 'رقم 2560209549940 , شروق فرحان مثقال الرويلي ,SAR,ID# 1046283352, شخصي /  أخرى , مصاريف ,REF 8235509010226597,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 01/09-14:43:26,EXCHANGE RATE 1.0, الرياض -  النزهة ,VALUE DT 01/09/25,CURRENCY SAR', check: '' },
-        { ref: 'REF 8235509010226469', note: 'رقم 2560209549940 , شروق فرحان مثقال الرويلي ,SAR,ID# 1046283352, مشتريات /  أخرى , تعزيز ,REF 8235509010226469,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 01/09-14:40:28,EXCHANGE RATE 1.0, الرياض -  النزهة ,VALUE DT 01/09/25,CURRENCY SAR', check: '' },
-        { ref: 'REF 2356924309518804  رقم', note: 'Outgoing Transfer,FEE 25.00 SAR,VAT AMOUNT 3.75 SAR,VAT% 15%,REF 2356924309518804  رقم , عمولة حوالة صادرة ,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 31/08-10:52:58,EXCHANGE RATE 1.0, حوالة صادرة , عمولة 25.00 ريال , الضريبة المضافة 3.75 ريال , نسبة ضريبةالقيمةالمضافة 15% , الرياض -  النزهة ,VALUE DT 31/08/25,CURRENCY SAR', check: '' },
-        
-        { ref: 'REF 2356924309518804  رقم', note: 'Issue Riyadbank Dft,FEE 10.00 SAR,VAT AMOUNT 1.50 SAR,VAT% 15%,NO. 301506454  رقم , ك مصرفي مبلغ العمولة ,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 31/08-10:49:27,EXCHANGE RATE 1.0, اصدار شيك مصرفي , عمولة 10.00 ريال , الضريبة المضافة 1.50 ريال , نسبة ضريبةالقيمةالمضافة 15% , الرياض -  النزهة ,VALUE DT 31/08/25,CURRENCY SAR', check: '' },
-        { ref: '--', note: 'CHECK NO. 301506454  رقم , بندر سعيد دبيس القحطاني ,05,CHECK CREDIT DATE 31/08/2025 R,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 31/08-10:49:27,EXCHANGE RATE 1.0, شيك ,1, أغراض أخرى ,EF 508310198063, الرياض -  النزهة ,VALUE DT 31/08/25,CURRENCY SAR', check: '' },
-        { ref: 'REF 2356924009518801  رقم', note: 'CHECK NO. 301506454  رقم , بندر سعيد دبيس القحطاني ,05,CHECK CREDIT DATE 31/08/2025 R,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 31/08-10:49:27,EXCHANGE RATE 1.0, شيك ,1, أغراض أخرى ,EF 508310198063, الرياض -  النزهة ,VALUE DT 31/08/25,CURRENCY SAR', check: '' },
-        { ref: '--', note: 'SENT DATE: 2025-06-02,FROM MOHAMMED HUSSAIN M ALABBA,REF VITII57865592094,ايداع شيك مقاصة البنك السعودي الفرنسي ,BSFREPHR98125153083YBSFRPYC251,ORG.AMOUNT: 800000.00,REMT INF: MOHAMMED HUSSAIN M A,4067 13217, سداد مديونية على شركة يشف ,SAUDI ARABIA,4067 13217 7,DATE-TIME28/08-36:21:13,VALUE DATE: 2025-08-28,SI  من شيك مقاصة,BANQUE SAUDI FRANSI  عن طريق ,1496Y6SARMOHAMMED HUSSAIN M AL,SAR EXCHANGE RATE 1.0000,LABBASI XX, قيمة , ين ,SA5655000000036162900382,481 Dist.', check: '' },
-        { ref: '--', note: 'SPAN CARD (0001),000179255205 25/08/22 21:00:0,AMT 0.01 SAR,VAT AMOUNT 0.00 SAR,VAT% 15%,11768277,3, مبلغ 0.01 ريال , الضريبة المضافة 0.00 ريال , نسبة ضريبةالقيمةالمضافة 15%', check: '' },
-        
-        { ref: '--', note: 'SPAN CARD (0001),000179255205 25/08/22 21:00:0,AMT 0.01 SAR,VAT AMOUNT 0.00 SAR,VAT% 15%,11768277,3, مبلغ 0.01 ريال , الضريبة المضافة 0.00 ريال , نسبة ضريبةالقيمةالمضافة 15%', check: '' },
-        { ref: '--', note: 'SPAN CARD (0001),000179255204 25/08/22 21:00:0,AMT 0.01 SAR,VAT AMOUNT 0.00 SAR,VAT% 15%,11768276,3, مبلغ 0.01 ريال , الضريبة المضافة 0.00 ريال , نسبة ضريبةالقيمةالمضافة 15%', check: '' },
-        { ref: '--', note: 'SPAN CARD (0003),000179145725 25/08/21 21:00:0,AMT 379.15 SAR,VAT AMOUNT 0.37 SAR,VAT% 15%,FEE 2.48 SAR,11768277,3, مبلغ 379.15 ريال , الضريبة المضافة 0.37 ريال , نسبة ضريبةالقيمةالمضافة 15% , عموله 2.48 ريال', check: '' },
-        { ref: '--', note: 'SPAN CARD (0003),000179029605 25/08/20 21:00:0,AMT 1,079.87 SAR,VAT AMOUNT 1.06 SAR,VAT% 15%,FEE 7.07 SAR,11768277,4, مبلغ 1,079.87 ريال , الضريبة المضافة 1.06 ريال , نسبة ضريبةالقيمةالمضافة 15% , عموله 7.07 ريال', check: '' },
-        { ref: '--', note: 'VISA CARD (0002),000179029613 25/08/20 21:00:0,AMT 368.07 SAR,VAT AMOUNT 1.28 SAR,VAT% 15%,FEE 8.50 SAR,11768277,4, مبلغ 368.07 ريال , الضريبة المضافة 1.28 ريال , نسبة ضريبةالقيمةالمضافة 15% , عموله 8.50 ريال', check: '' },
-        
+            // بيانات مختلفة لكل صف
+            const extraDetails = [
+                { ref: 'REF  82355090202434784 رقم', note: 'رقم 2560209549940 , شروق فرحان مثقال الرويلي ,SAR,ID# 1046283352, مصروفات /  أخرى , مصروفات ,REF 82355090202434784,AL-NUZHAH BRANCH-Riyadh,DATE-TIME27/09-11:29:18,EXCHANGE RATE 1.0, الرياض -  النزهة ,VALUE DT 27/09/25,CURRENCY SAR', check: '' },
+                { ref: 'REF 2356924609518816  رقم', note: 'Outgoing Transfer,FEE 25.00 SAR,VAT AMOUNT 3.75 SAR,VAT% 15%,REF 2356924609518816  رقم , عمولة حوالة صادرة ,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 03/09-14:15:46,EXCHANGE RATE 1.0, حوالة صادرة , عمولة 25.00 ريال , الضريبة المضافة 3.75 ريال , نسبة ضريبةالقيمةالمضافة 15% , الرياض -  النزهة ,VALUE DT 27/09/25,CURRENCY SAR', check: '' },
+                { ref: 'REF 8235509010226597', note: 'رقم 2560209549940 , شروق فرحان مثقال الرويلي ,SAR,ID# 1046283352, شخصي /  أخرى , مصاريف ,REF 8235509010226597,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 01/09-14:43:26,EXCHANGE RATE 1.0, الرياض -  النزهة ,VALUE DT 01/09/25,CURRENCY SAR', check: '' },
+                { ref: 'REF 8235509010226469', note: 'رقم 2560209549940 , شروق فرحان مثقال الرويلي ,SAR,ID# 1046283352, مشتريات /  أخرى , تعزيز ,REF 8235509010226469,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 01/09-14:40:28,EXCHANGE RATE 1.0, الرياض -  النزهة ,VALUE DT 01/09/25,CURRENCY SAR', check: '' },
+                { ref: 'REF 2356924309518804  رقم', note: 'Issue Riyadbank Dft,FEE 10.00 SAR,VAT AMOUNT 1.50 SAR,VAT% 15%,NO. 301506454  رقم , ك مصرفي مبلغ العمولة ,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 31/08-10:49:27,EXCHANGE RATE 1.0, اصدار شيك مصرفي , عمولة 10.00 ريال , الضريبة المضافة 1.50 ريال , نسبة ضريبةالقيمةالمضافة 15% , الرياض -  النزهة ,VALUE DT 31/08/25,CURRENCY SAR', check: '' },
 
+                { ref: 'REF 2356924309518804  رقم', note: 'Outgoing Transfer,FEE 25.00 SAR,VAT AMOUNT 3.75 SAR,VAT% 15%,REF 2356924309518804  رقم , عمولة حوالة صادرة ,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 31/08-10:52:58,EXCHANGE RATE 1.0, حوالة صادرة , عمولة 25.00 ريال , الضريبة المضافة 3.75 ريال , نسبة ضريبةالقيمةالمضافة 15% , الرياض -  النزهة ,VALUE DT 31/08/25,CURRENCY SAR', check: '' },
+                { ref: '--', note: 'TO:  شروق فرحان مثقال الرويلي ,REF 2356924309518804,SAR 700000.00,SAR-  بنك الانماء INMASARI,SA9705000068204838286000, مصروفات /  أخرى ,SAU,SAU,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 31/08-10:52:58,EXCHANGE RATE 1.0, الى : شروق فرحان مثقال الرويلي , مرجع 2356924309518804 ,SAUDI ARABIA, حوالة لصاحب المنشاة , الرياض -  النزهة ,VALUE DT 31/08/25,CURRENCY SAR', check: '' },
+                { ref: 'REF 2356924009518801  رقم', note: 'CHECK NO. 301506454  رقم , بندر سعيد دبيس القحطاني ,05,CHECK CREDIT DATE 31/08/2025 R,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 31/08-10:49:27,EXCHANGE RATE 1.0, شيك ,1, أغراض أخرى ,EF 508310198063, الرياض -  النزهة ,VALUE DT 31/08/25,CURRENCY SAR', check: '' },
+                { ref: '--', note: 'SENT DATE: 2025-06-02,FROM MOHAMMED HUSSAIN M ALABBA,REF VITII57865592094,ايداع شيك مقاصة البنك السعودي الفرنسي ,BSFREPHR98125153083YBSFRPYC251,ORG.AMOUNT: 800000.00,REMT INF: MOHAMMED HUSSAIN M A,4067 13217, سداد مديونية على شركة يشف ,SAUDI ARABIA,4067 13217 7,DATE-TIME28/08-36:21:13,VALUE DATE: 2025-08-28,SI  من شيك مقاصة,BANQUE SAUDI FRANSI  عن طريق ,1496Y6SARMOHAMMED HUSSAIN M AL,SAR EXCHANGE RATE 1.0000,LABBASI XX, قيمة , ين ,SA5655000000036162900382,481 Dist.', check: '' },
+                { ref: '--', note: 'SENT DATE: 2025-06-02,FROM MOHAMMED HUSSAIN M ALABBA,REF VITII57865592094,ايداع شيك مقاصة البنك السعودي الفرنسي ,BSFREPHR98125153083YBSFRPYC251,ORG.AMOUNT: 800000.00,REMT INF: MOHAMMED HUSSAIN M A,4067 13217, سداد مديونية على شركة يشف ,SAUDI ARABIA,4067 13217 7,DATE-TIME28/08-36:21:13,VALUE DATE: 2025-08-28,SI  من شيك مقاصة,BANQUE SAUDI FRANSI  عن طريق ,1496Y6SARMOHAMMED HUSSAIN M AL,SAR EXCHANGE RATE 1.0000,LABBASI XX, قيمة , ين ,SA5655000000036162900382,481 Dist.', check: '' },
+
+                { ref: '--', note: 'SPAN CARD (0001),000179255205 25/08/22 21:00:0,AMT 0.01 SAR,VAT AMOUNT 0.00 SAR,VAT% 15%,11768277,3, مبلغ 0.01 ريال , الضريبة المضافة 0.00 ريال , نسبة ضريبةالقيمةالمضافة 15%', check: '' },
+                { ref: '--', note: 'SPAN CARD (0001),000179255204 25/08/22 21:00:0,AMT 0.01 SAR,VAT AMOUNT 0.00 SAR,VAT% 15%,11768276,3, مبلغ 0.01 ريال , الضريبة المضافة 0.00 ريال , نسبة ضريبةالقيمةالمضافة 15%', check: '' },
+                { ref: '--', note: 'SPAN CARD (0003),000179145725 25/08/21 21:00:0,AMT 379.15 SAR,VAT AMOUNT 0.37 SAR,VAT% 15%,FEE 2.48 SAR,11768277,3, مبلغ 379.15 ريال , الضريبة المضافة 0.37 ريال , نسبة ضريبةالقيمةالمضافة 15% , عموله 2.48 ريال', check: '' },
+                { ref: '--', note: 'SPAN CARD (0003),000179029605 25/08/20 21:00:0,AMT 1,079.87 SAR,VAT AMOUNT 1.06 SAR,VAT% 15%,FEE 7.07 SAR,11768277,4, مبلغ 1,079.87 ريال , الضريبة المضافة 1.06 ريال , نسبة ضريبةالقيمةالمضافة 15% , عموله 7.07 ريال', check: '' },
+                { ref: '--', note: 'VISA CARD (0002),000179029613 25/08/20 21:00:0,AMT 368.07 SAR,VAT AMOUNT 1.28 SAR,VAT% 15%,FEE 8.50 SAR,11768277,4, مبلغ 368.07 ريال , الضريبة المضافة 1.28 ريال , نسبة ضريبةالقيمةالمضافة 15% , عموله 8.50 ريال', check: '' },
 
 
-        { ref: 'REF 220  رقم', note: 'SPAN CARD (0001),000179255205 25/08/22 21:00:0,AMT 0.01 SAR,VAT AMOUNT 0.00 SAR,VAT% 15%,11768277,3, مبلغ 0.01 ريال , الضريبة المضافة 0.00 ريال , نسبة ضريبةالقيمةالمضافة 15%', check: '' },
-        { ref: 'REF 220  رقم', note: 'SPAN CARD (0001),000179255204 25/08/22 21:00:0,AMT 0.01 SAR,VAT AMOUNT 0.00 SAR,VAT% 15%,11768276,3, مبلغ 0.01 ريال , الضريبة المضافة 0.00 ريال , نسبة ضريبةالقيمةالمضافة 15%', check: '' },
-        { ref: 'REF 20250710SARJHIRJHI6BOPF111', note: 'SPAN CARD (0003),000179145725 25/08/21 21:00:0,AMT 379.15 SAR,VAT AMOUNT 0.37 SAR,VAT% 15%,FEE 2.48 SAR,11768277,3, مبلغ 379.15 ريال , الضريبة المضافة 0.37 ريال , نسبة ضريبةالقيمةالمضافة 15% , عموله 2.48 ريال', check: '' },
-        { ref: 'REF 20250710SARJHIRJHI6BOPF111', note: 'SPAN CARD (0003),000179029605 25/08/20 21:00:0,AMT 1,079.87 SAR,VAT AMOUNT 1.06 SAR,VAT% 15%,FEE 7.07 SAR,11768277,4, مبلغ 1,079.87 ريال , الضريبة المضافة 1.06 ريال , نسبة ضريبةالقيمةالمضافة 15% , عموله 7.07 ريال', check: '' },
-        { ref: '--', note: 'VISA CARD (0002),000179029613 25/08/20 21:00:0,AMT 368.07 SAR,VAT AMOUNT 1.28 SAR,VAT% 15%,FEE 8.50 SAR,11768277,4, مبلغ 368.07 ريال , الضريبة المضافة 1.28 ريال , نسبة ضريبةالقيمةالمضافة 15% , عموله 8.50 ريال', check: '' },
-        
 
-        { ref: '--', note: 'Issue Riyadbank Dft,FEE 10.00 SAR,VAT AMOUNT 1.50 SAR,VAT% 15%,NO. 301506406  رقم , ك مصرفي مبلغ العمولة ,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 02/06-16:42:24,EXCHANGE RATE 1.0, اصدار شيك مصرفي , عمولة 10.00 ريال , الضريبة المضافة 1.50 ريال , نسبة ضريبةالقيمةالمضافة 15% , الرياض -  النزهة ,VALUE DT 02/06/25,CURRENCY SAR', check: '' },
-        { ref: 'REF 8235506029219619', note: 'رقم 2560209549940 , شروق فرحان مثقال الرويلي ,SAR,ID# 1046283352, شخصي /  أخرى , بيع ,REF 8235506029219619,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 02/06-16:46:26,EXCHANGE RATE 1.0, الرياض -  النزهة ,VALUE DT 02/06/25,CURRENCY SAR', check: '' },
-        { ref: '--', note: 'CHECK NO. 301506406  رقم , نايف بن بندر بن مساعد ال سعود ,05,CHECK CREDIT DATE 02/06/2025 R,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 02/06-16:42:24,EXCHANGE RATE 1.0, شيك , الامير ,1, أغراض أخرى ,EF 506029219554, الرياض -  النزهة ,VALUE DT 02/06/25,CURRENCY SAR', check: '' },
-        { ref: 'REF VITII57865592094', note: 'SENT DATE: 2025-06-02,FROM MOHAMMED HUSSAIN M ALABBA,REF VITII57865592094,THROUGH BANQUE SAUDI FRANSI,BSFREPHR98125153083YBSFRPYC251,ORG.AMOUNT: 800000.00,REMT INF: MOHAMMED HUSSAIN M A,4067 13217, ايجار ومخارجة خروج شريك من يشف ,SAUDI ARABIA,4067 13217 7,DATE-TIME 02/06-22:26:04,VALUE DATE: 2025-06-02,SI  من ,BSFRPYC2515300Y6,BANQUE SAUDI FRANSI  عن طريق ,5300Y6SARMOHAMMED HUSSAIN M AL,SAR EXCHANGE RATE 1.0000,LABBASI XX, قيمة , ين ,SA5655000000036162900382,481 al dawud Al Hamra Dist.,VALUE DT 02/06/25', check: '' },
-        { ref: 'REF 220  رقم', note: 'CORP LENDING MGT. FE,FEE 0000000000180.00 SAR,VAT AMOUNT 00027.00 SAR,VAT% 15%,REF 220  رقم ,SME CENTER RIYADH, AL-NAFAL,DATE-TIME 26/05-12:09:17,EXCHANGE RATE 1.0, عمولات اقراض -  ادارية , عمولة 0000000000180.00 ريال , الضريبة المضافة 00027.00 ريال , نسبة ضريبةالقيمةالمضافة 15% , مركز المنشأت الصغيرة والمتوسطة ,VALUE DT 26/05/25,CURRENCY SAR', check: '' },
-        { ref: 'REF 20250525SABSFRBSFR6B981116', note: 'REF BSFR000406268933,REF 20250525SABSFRBSFR6B981116,SHURUQ FARHAN MITHQAL ALRUWAIL,BSFRSARI,SA82550000000P6851500170,25-05-2025 04:49:15 PM,VIA CORE SYSTEM,DATE-TIME 25/05-16:49:15,48342721,I, عن طريق النظام الآ لي ,VALUE DT 25/05/25', check: '' },
-    ];
 
-    const details = extraDetails[rowIndex % extraDetails.length];
+                { ref: 'REF 220  رقم', note: 'CORP LENDING MGT. FE,FEE 0000000000180.00 SAR,VAT AMOUNT 00027.00 SAR,VAT% 15%,REF 220  رقم ,SME CENTER RIYADH, AL-NAFAL,DATE-TIME 27/07-13:07:04,EXCHANGE RATE 1.0, عمولات اقراض -  ادارية , عمولة 0000000000180.00 ريال , الضريبة المضافة 00027.00 ريال , نسبة ضريبةالقيمةالمضافة 15% , مركز المنشأت الصغيرة والمتوسطة ,VALUE DT 27/07/25,CURRENCY SAR', check: '' },
+                { ref: 'REF 220  رقم', note: 'SPAN CARD (0001),000179255204 25/08/22 21:00:0,AMT 0.01 SAR,VAT AMOUNT 0.00 SAR,VAT% 15%,11768276,3, مبلغ 0.01 ريال , الضريبة المضافة 0.00 ريال , نسبة ضريبةالقيمةالمضافة 15%', check: '' },
+                { ref: 'REF 20250710SARJHIRJHI6BOPF111', note: 'REF RJHI000423982522,REF 20250710SARJHIRJHI6BOPF111,Impact Management Medical comp,RJHISARI,SA1180000589608016202268,10-07-2025 11:32:52 AM,VIA CORE SYSTEM,DATE-TIME 10/07-11:32:52,32403364,any, عن طريق النظام الآ لي ,VALUE DT 10/07/25', check: '' },
+                { ref: 'REF 20250710SARJHIRJHI6BOPF111', note: 'REF RJHI000423980654,REF 20250710SARJHIRJHI6BOPF111,Impact Management Medical comp,RJHISARI,SA1180000589608016202268,10-07-2025 11:26:46 AM,VIA CORE SYSTEM,DATE-TIME 10/07-11:26:46,26378761,any, عن طريق النظام الآ لي ,VALUE DT 10/07/25', check: '' },
+                { ref: '--', note: 'CHECK NO. 301506417  رقم , نايف بن بندر بن مساعد ال سعود ,05,CHECK CREDIT DATE 26/06/2025 R,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 26/06-14:06:34,EXCHANGE RATE 1.0, شيك , الامير ,1, أغراض أخرى ,EF 506269439350, الرياض -  النزهة ,VALUE DT 26/06/25,CURRENCY SAR', check: '' },
 
-    const detailsRow = document.createElement('tr');
-    detailsRow.className = 'details';
-    detailsRow.innerHTML = `
+
+                { ref: '--', note: 'Issue Riyadbank Dft,FEE 10.00 SAR,VAT AMOUNT 1.50 SAR,VAT% 15%,NO. 301506406  رقم , ك مصرفي مبلغ العمولة ,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 02/06-16:42:24,EXCHANGE RATE 1.0, اصدار شيك مصرفي , عمولة 10.00 ريال , الضريبة المضافة 1.50 ريال , نسبة ضريبةالقيمةالمضافة 15% , الرياض -  النزهة ,VALUE DT 02/06/25,CURRENCY SAR', check: '' },
+                { ref: 'REF 8235506029219619', note: 'رقم 2560209549940 , شروق فرحان مثقال الرويلي ,SAR,ID# 1046283352, شخصي /  أخرى , بيع ,REF 8235506029219619,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 02/06-16:46:26,EXCHANGE RATE 1.0, الرياض -  النزهة ,VALUE DT 02/06/25,CURRENCY SAR', check: '' },
+                { ref: '--', note: 'CHECK NO. 301506406  رقم , نايف بن بندر بن مساعد ال سعود ,05,CHECK CREDIT DATE 02/06/2025 R,AL-NUZHAH BRANCH-Riyadh,DATE-TIME 02/06-16:42:24,EXCHANGE RATE 1.0, شيك , الامير ,1, أغراض أخرى ,EF 506029219554, الرياض -  النزهة ,VALUE DT 02/06/25,CURRENCY SAR', check: '' },
+                { ref: 'REF VITII57865592094', note: 'SENT DATE: 2025-06-02,FROM MOHAMMED HUSSAIN M ALABBA,REF VITII57865592094,THROUGH BANQUE SAUDI FRANSI,BSFREPHR98125153083YBSFRPYC251,ORG.AMOUNT: 800000.00,REMT INF: MOHAMMED HUSSAIN M A,4067 13217, ايجار ومخارجة خروج شريك من يشف ,SAUDI ARABIA,4067 13217 7,DATE-TIME 02/06-22:26:04,VALUE DATE: 2025-06-02,SI  من ,BSFRPYC2515300Y6,BANQUE SAUDI FRANSI  عن طريق ,5300Y6SARMOHAMMED HUSSAIN M AL,SAR EXCHANGE RATE 1.0000,LABBASI XX, قيمة , ين ,SA5655000000036162900382,481 al dawud Al Hamra Dist.,VALUE DT 02/06/25', check: '' },
+                { ref: 'REF 220  رقم', note: 'CORP LENDING MGT. FE,FEE 0000000000180.00 SAR,VAT AMOUNT 00027.00 SAR,VAT% 15%,REF 220  رقم ,SME CENTER RIYADH, AL-NAFAL,DATE-TIME 26/05-12:09:17,EXCHANGE RATE 1.0, عمولات اقراض -  ادارية , عمولة 0000000000180.00 ريال , الضريبة المضافة 00027.00 ريال , نسبة ضريبةالقيمةالمضافة 15% , مركز المنشأت الصغيرة والمتوسطة ,VALUE DT 26/05/25,CURRENCY SAR', check: '' },
+                { ref: 'REF 20250525SABSFRBSFR6B981116', note: 'REF BSFR000406268933,REF 20250525SABSFRBSFR6B981116,SHURUQ FARHAN MITHQAL ALRUWAIL,BSFRSARI,SA82550000000P6851500170,25-05-2025 04:49:15 PM,VIA CORE SYSTEM,DATE-TIME 25/05-16:49:15,48342721,I, عن طريق النظام الآ لي ,VALUE DT 25/05/25', check: '' },
+            ];
+
+            const details = extraDetails[rowIndex % extraDetails.length];
+
+            const detailsRow = document.createElement('tr');
+            detailsRow.className = 'details';
+            detailsRow.innerHTML = `
       <td colspan="6" style="background:#ddd; padding:18px;">
         <div style="
           display: flex;
@@ -797,9 +819,9 @@ td.muted {
       </td>
     `;
 
-    tr.insertAdjacentElement('afterend', detailsRow);
-    btn.setAttribute('aria-expanded', 'true');
-}
+            tr.insertAdjacentElement('afterend', detailsRow);
+            btn.setAttribute('aria-expanded', 'true');
+        }
 
 
         // expose toggleDetails to global scope (used by inline onclick)
@@ -813,4 +835,5 @@ td.muted {
         // Note: this is a front-end mock. For production you must fetch real data via secure API calls and implement server-side auth & validation.
     </script>
 </body>
+
 </html>
